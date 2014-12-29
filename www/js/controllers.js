@@ -11,6 +11,18 @@ zegin.controller('TimelineCtrl', function ($scope, EventsService, $window) {
     
     $scope.refreshEvents();
     
+    $scope.refreshEventsPull = function () {
+        EventsService.getAllEvents().then(function (res) {
+            $scope.events = res.data;
+            console.log($scope.events);
+        }, function (err) {
+            $window.alert(err);
+        })
+        .finally(function(){
+            $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
+    
     $scope.GotoEventDetails= function(id){
         $window.location="#/timeline/"+id;
     };

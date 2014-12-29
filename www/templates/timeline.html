@@ -4,16 +4,19 @@
         <h1 class="title">What's going on?</h1>
     </ion-header-bar>
     <ion-content class="padding">
-        <a href="#/zegin/details/{{event._id}}" ng-repeat="event in events">
-            <div class="list card">
-                <div class="item item-body">
-                    <div>
-                        <b>{{event.name}}</b>
-                        <p>{{event.date | date:"MM/dd/yyyy 'a las' h:mma"}}</p>
+        <ion-refresher pulling-text="Suelta para refrescar..." refreshing-text="Cargando..." on-refresh="refreshEventsPull()">
+        </ion-refresher>
+        <div class="padding">
+            <a href="#/zegin/details/{{event._id}}" ng-repeat="event in events">
+                <div class="list card">
+                    <div class="item item-body">
+                        <div>
+                            <b>{{event.name}}</b>
+                            <p>{{event.date | date:"MM/dd/yyyy 'a las' h:mma"}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-
+            </a>
+        </div>
     </ion-content>
 </ion-view>
