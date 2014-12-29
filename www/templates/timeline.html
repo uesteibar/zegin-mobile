@@ -4,7 +4,7 @@
         <h1 class="title">What's going on?</h1>
     </ion-header-bar>
     <ion-content class="padding">
-        <ion-refresher pulling-text="Suelta para refrescar..." refreshing-text="Cargando..." on-refresh="refreshEventsPull()">
+        <ion-refresher pulling-text="Suelta para refrescar..." refreshing-text="Cargando..." on-refresh="refreshEvents()">
         </ion-refresher>
         <div class="padding">
             <a href="#/zegin/details/{{event._id}}" ng-repeat="event in events">
