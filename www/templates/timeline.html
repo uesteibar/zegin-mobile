@@ -7,16 +7,28 @@
         <ion-refresher pulling-text="Suelta para refrescar..." refreshing-text="Cargando..." on-refresh="refreshEvents()">
         </ion-refresher>
         <div class="padding">
+
+            <div class="range">
+                <i class="icon ion-home"></i>
+                <input type="range" name="kmr" min="0" value="{{options.kmr}}" ng-model="options.kmr" max="100" step="1">
+                <i class="icon ion-planet"></i>
+            </div>
+            <div class="item item-divider">
+                {{options.kmr}} kilómetros a la redonda
+            </div>
             <a href="#/zegin/details/{{event._id}}" ng-repeat="event in events">
                 <div class="list card">
                     <div class="item item-body">
                         <div>
                             <b>{{event.name}}</b>
                             <p>{{event.date | date:"MM/dd/yyyy 'a las' h:mma"}}</p>
+                            <p>{{event.locationText}}</p>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
+
+
     </ion-content>
 </ion-view>

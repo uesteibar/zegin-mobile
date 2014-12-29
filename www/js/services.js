@@ -4,7 +4,7 @@ zegin.factory('EventsService',['$http', function($http){
         getKMREvents: function(locationData){
             console.log(locationData.k);
             console.log(locationData.D);
-            return $http.get(options.api.base_url + '/api/events/'+locationData.k + "/" + locationData.D);
+            return $http.get(options.api.base_url + '/api/events/'+locationData.k + "/" + locationData.D + "/" + locationData.kmr);
         },
 //        putPost: function(post){
 //            post.date = new Date();

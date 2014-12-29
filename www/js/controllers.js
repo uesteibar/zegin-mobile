@@ -1,9 +1,12 @@
 zegin.controller('TimelineCtrl', function ($scope, EventsService, $window, $ionicPlatform, $cordovaGeolocation) {
     $scope.events = [];
+    $scope.options = {
+        kmr: 10
+    };
 
     $scope.refreshEvents = function () {
         $ionicPlatform.ready(function () {
-
+            console.log($scope.options.kmr);
             // TODO - query round km
             //                $cordovaPlugin.someFunction().then(success, error);
             console.log("device is ready!");
@@ -22,7 +25,8 @@ zegin.controller('TimelineCtrl', function ($scope, EventsService, $window, $ioni
 
                     var locationData = {
                         k: lat,
-                        D: long
+                        D: long,
+                        kmr: $scope.options.kmr
                     };
                 console.log(locationData.k);
                 console.log(locationData.D);
