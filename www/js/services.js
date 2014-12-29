@@ -2,7 +2,7 @@
 zegin.factory('EventsService',['$http', function($http){
     return{
         getAllEvents: function(){
-            return $http.get(options.api.base_url + '/events');
+            return $http.get(options.api.base_url + '/api/events');
         }
 //        putPost: function(post){
 //            post.date = new Date();
