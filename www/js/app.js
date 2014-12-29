@@ -9,7 +9,8 @@ var zegin = angular.module('zegin', ['ionic']);
 
 var options = {};
 options.api = {};
-options.api.base_url = "http://localhost:3000";
+//options.api.base_url = "http://localhost:3000";
+options.api.base_url = "http://192.168.1.199:3000";
 
 
 zegin.run(function($ionicPlatform) {
