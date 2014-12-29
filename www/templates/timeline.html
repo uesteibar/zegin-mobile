@@ -7,7 +7,8 @@
         <div class="list card" ng-repeat="event in events">
             <div class="item item-body">
                 <div>
-                    OLE GUAPO <b>{{event._id}}</b>
+                    <b>{{event.name}}</b>
+                    <p>{{event.date | date:"MM/dd/yyyy 'a las' h:mma"}}</p>
                 </div>
             </div>
         </div>
