@@ -46,9 +46,19 @@ zegin.config(function($stateProvider, $urlRouterProvider) {
   .state('zegin.timeline', {
     url: '/timeline',
     views: {
-      'zegin-timeline': {
+      'zegin-tab': {
         templateUrl: 'templates/timeline.html',
         controller: 'TimelineCtrl'
+      }
+    }
+  })
+  
+    .state('zegin.details', {
+    url: '/details/:id',
+    views: {
+      'zegin-tab': {
+        templateUrl: 'templates/event_details.html',
+        controller: 'EventDetailsCtrl'
       }
     }
   })

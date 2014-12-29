@@ -1,17 +1,19 @@
 <ion-view view-title="Timeline">
 
     <ion-header-bar class="bar-dark">
-		<h1 class="title">What's going on?</h1>
-	</ion-header-bar>
+        <h1 class="title">What's going on?</h1>
+    </ion-header-bar>
     <ion-content class="padding">
-        <div class="list card" ng-repeat="event in events">
-            <div class="item item-body">
-                <div>
-                    <b>{{event.name}}</b>
-                    <p>{{event.date | date:"MM/dd/yyyy 'a las' h:mma"}}</p>
+        <a href="#/zegin/details/{{event._id}}" ng-repeat="event in events">
+            <div class="list card">
+                <div class="item item-body">
+                    <div>
+                        <b>{{event.name}}</b>
+                        <p>{{event.date | date:"MM/dd/yyyy 'a las' h:mma"}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
 
     </ion-content>
 </ion-view>
