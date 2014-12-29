@@ -19,15 +19,19 @@ zegin.controller('TimelineCtrl', function ($scope, EventsService, $window, $ioni
                     var lat = position.coords.latitude
                     var long = position.coords.longitude
 
-                    console.log(lat + ", " + long);
 
-
-                    EventsService.getAllEvents().then(function (res) {
+                    var locationData = {
+                        k: lat,
+                        D: long
+                    };
+                console.log(locationData.k);
+                console.log(locationData.D);
+                    EventsService.getKMREvents(locationData).then(function (res) {
 
                         $scope.events = res.data;
                         //                        console.log($scope.events);
                     }, function (err) {
-                        $window.alert(err);
+//                        $window.alert(err);
                     })
                         .finally(function () {
                             $scope.$broadcast('scroll.refreshComplete');
