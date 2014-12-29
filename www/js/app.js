@@ -32,7 +32,7 @@ zegin.config(function($stateProvider, $urlRouterProvider) {
   // setup an abstract state for the tabs directive
     .state('zegin', {
     url: "/zegin",
-    abstract: true,
+    abstract: false,
     templateUrl: "templates/tabs.html"
   })
 
