@@ -19,13 +19,13 @@ zegin.controller('TimelineCtrl', function ($scope, EventsService, $window, $ioni
                     var lat = position.coords.latitude
                     var long = position.coords.longitude
 
-                    alert(lat + ", " + long);
+                    console.log(lat + ", " + long);
 
 
                     EventsService.getAllEvents().then(function (res) {
 
                         $scope.events = res.data;
-                        console.log($scope.events);
+                        //                        console.log($scope.events);
                     }, function (err) {
                         $window.alert(err);
                     })
