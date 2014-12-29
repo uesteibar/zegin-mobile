@@ -7,6 +7,11 @@
 // 'starter.controllers' is found in controllers.js
 var zegin = angular.module('zegin', ['ionic']);
 
+var options = {};
+options.api = {};
+options.api.base_url = "http://localhost:3000";
+
+
 zegin.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
