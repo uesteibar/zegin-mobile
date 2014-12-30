@@ -28,14 +28,14 @@ zegin.controller('TimelineCtrl', function ($scope, EventsService, $window, $ioni
                         D: long,
                         kmr: $scope.options.kmr
                     };
-                console.log(locationData.k);
-                console.log(locationData.D);
+                    console.log(locationData.k);
+                    console.log(locationData.D);
                     EventsService.getKMREvents(locationData).then(function (res) {
 
                         $scope.events = res.data;
                         //                        console.log($scope.events);
                     }, function (err) {
-//                        $window.alert(err);
+                        //                        $window.alert(err);
                     })
                         .finally(function () {
                             $scope.$broadcast('scroll.refreshComplete');
@@ -62,7 +62,7 @@ zegin.controller('TimelineCtrl', function ($scope, EventsService, $window, $ioni
 
 
 });
-zegin.controller('EventDetailsCtrl', function ($scope, EventsService, $stateParams, $ionicHistory) {
+zegin.controller('EventDetailsCtrl', function ($scope, EventsService, $stateParams, $ionicHistory, $compile) {
     $scope.event = {
         name: "",
         date: 0
@@ -70,6 +70,8 @@ zegin.controller('EventDetailsCtrl', function ($scope, EventsService, $statePara
     $scope.getEvent = function (id) {
         EventsService.getEvent(id).then(function (res) {
             $scope.event = res.data;
+            $scope.initMap($scope.event.locationData.k, $scope.event.locationData.D, $scope.event.name);
+
             console.log($scope.event);
         }, function (err) {
             $window.alert(err);
@@ -81,6 +83,29 @@ zegin.controller('EventDetailsCtrl', function ($scope, EventsService, $statePara
     $scope.goBack = function () {
         $ionicHistory.goBack();
     };
+
+
+
+    $scope.initMap = function initialize(lat, long, title) {
+        var myLatlng = new google.maps.LatLng(lat, long);
+
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);
+
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: title
+        });
+        $scope.map = map;
+    };
+
 
 
 });
