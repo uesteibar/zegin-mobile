@@ -3,6 +3,9 @@
     <ion-header-bar class="bar-dark">
         <h1 class="title">What's going on?</h1>
     </ion-header-bar>
+    <div ng-show="options.connectionFail" class="bar bar-subheader bar-alert bar-assertive">
+        <h2 class="title">Sin conexión</h2>
+    </div>
     <ion-content class="padding">
         <ion-refresher pulling-text="Suelta para refrescar..." refreshing-text="Cargando..." on-refresh="refreshEvents()">
         </ion-refresher>

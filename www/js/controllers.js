@@ -1,15 +1,19 @@
 zegin.controller('TimelineCtrl', function ($scope, EventsService, $window, $ionicPlatform, $cordovaGeolocation) {
     $scope.events = [];
     $scope.options = {
-        kmr: 10
+        kmr: 10,
+        connectionFail: false
     };
 
+
     $scope.refreshEvents = function () {
+        $scope.options.connectionFail = false;
         $ionicPlatform.ready(function () {
             console.log($scope.options.kmr);
             // TODO - query round km
             //                $cordovaPlugin.someFunction().then(success, error);
             console.log("device is ready!");
+
 
             var posOptions = {
                 timeout: 10000,
@@ -33,9 +37,11 @@ zegin.controller('TimelineCtrl', function ($scope, EventsService, $window, $ioni
                     EventsService.getKMREvents(locationData).then(function (res) {
 
                         $scope.events = res.data;
+                        $scope.options.connectionFail = false;
                         //                        console.log($scope.events);
                     }, function (err) {
                         //                        $window.alert(err);
+                        $scope.options.connectionFail = true;
                     })
                         .finally(function () {
                             $scope.$broadcast('scroll.refreshComplete');
@@ -67,14 +73,20 @@ zegin.controller('EventDetailsCtrl', function ($scope, EventsService, $statePara
         name: "",
         date: 0
     };
+
+    $scope.options = {
+        connectionFail: false
+    };
+
     $scope.getEvent = function (id) {
+
         EventsService.getEvent(id).then(function (res) {
             $scope.event = res.data;
-//            $scope.initMap($scope.event.locationData.k, $scope.event.locationData.D, $scope.event.name);
-
+            //            $scope.initMap($scope.event.locationData.k, $scope.event.locationData.D, $scope.event.name);
+            $scope.options.connectionFail = false;
             console.log($scope.event);
         }, function (err) {
-            $window.alert(err);
+            $scope.options.connectionFail = true;
         });
     };
 
@@ -86,25 +98,25 @@ zegin.controller('EventDetailsCtrl', function ($scope, EventsService, $statePara
 
 
 
-//    $scope.initMap = function initialize(lat, long, title) {
-//        var myLatlng = new google.maps.LatLng(lat, long);
-//
-//        var mapOptions = {
-//            center: myLatlng,
-//            zoom: 16,
-//            mapTypeId: google.maps.MapTypeId.ROADMAP
-//        };
-//        var map = new google.maps.Map(document.getElementById("map"),
-//            mapOptions);
-//
-//
-//        var marker = new google.maps.Marker({
-//            position: myLatlng,
-//            map: map,
-//            title: title
-//        });
-//        $scope.map = map;
-//    };
+    //    $scope.initMap = function initialize(lat, long, title) {
+    //        var myLatlng = new google.maps.LatLng(lat, long);
+    //
+    //        var mapOptions = {
+    //            center: myLatlng,
+    //            zoom: 16,
+    //            mapTypeId: google.maps.MapTypeId.ROADMAP
+    //        };
+    //        var map = new google.maps.Map(document.getElementById("map"),
+    //            mapOptions);
+    //
+    //
+    //        var marker = new google.maps.Marker({
+    //            position: myLatlng,
+    //            map: map,
+    //            title: title
+    //        });
+    //        $scope.map = map;
+    //    };
 
 
 
